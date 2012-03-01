@@ -9,13 +9,13 @@ export {
         redef enum Notice::Type += {
                 SensitiveDNS_Lookup,
         };
-
         const hot_dns =
-        "armstrong.pezcyclingnews.com"
+                /^lemonde.pezcyclingnews.com/ |
+                /^lemonde.velonews.com/ |
+                /^www.beammeupscotty.com/ |
+                /^first.second.third.yahoo.com/
 &redef;
-
 }
-
 event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qclass: count) &priority=5
         {
         local orig = c$id$orig_h;
