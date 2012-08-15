@@ -1,0 +1,19 @@
+&redef;
+const whitelist =
+	{[12.145.63.68]}
+&redef;
+}
+event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qclass: count) &priority=5
+        {
+        local orig = c$id$orig_h;
+        local resp = c$id$resp_h;
+        if ( hot_dns in query )
+		{
+			if (orig in whitelist)
+				return;
+                	NOTICE([$note=SensitiveDNS_Lookup,
+                        	$msg=fmt("name lookup of %s", query),
+                        	$conn=c,
+                        	$sub="name lookup"]);
+		}
+        }

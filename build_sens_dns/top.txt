@@ -1,0 +1,13 @@
+##! sensitive DNS lookup.
+
+@load base/frameworks/notice
+@load base/protocols/dns
+
+module DNS;
+
+export {
+        redef enum Notice::Type += {
+                SensitiveDNS_Lookup,
+        };
+        const hot_dns =
+
